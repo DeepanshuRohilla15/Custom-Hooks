@@ -1,12 +1,17 @@
 import './App.css'
-import { usePostTitle } from './hooks/useFetch'
+import { useState } from 'react';
+import { useFetch } from './hooks/useFetch'
 
 function App() {
-  const postTitle = usePostTitle();
+  const [currentPost, setCurrentPost] = useState(1);
+  const { finalData } = useFetch("https://jsonplaceholder.typicode.com/posts/" + currentPost);
 
   return (
     <div>
-      {postTitle}
+      <button onClick={() => setCurrentPost(1)}>1</button>
+      <button onClick={() => setCurrentPost(2)}>2</button>
+      <button onClick={() => setCurrentPost(3)}>3</button>
+      {JSON.stringify(finalData)}
     </div>
   )
 }
